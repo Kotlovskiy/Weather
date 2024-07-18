@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -36,6 +37,10 @@ android {
 }
 
 dependencies {
+
+    //dagger 2
+    implementation 'com.google.dagger:dagger:2.51.1'
+    kapt 'com.google.dagger:dagger-compiler:2.51.1'
 
     // Internet
     implementation "com.squareup.retrofit2:retrofit:2.9.0"

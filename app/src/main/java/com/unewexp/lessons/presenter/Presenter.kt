@@ -1,9 +1,13 @@
 package com.unewexp.lessons.presenter
 
+import com.unewexp.lessons.AppGraph
+import com.unewexp.lessons.model.Client
 import com.unewexp.lessons.model.RestAPIService
+import javax.inject.Inject
 
 class Presenter {
-    val api = RestAPIService()
+    @Inject
+    lateinit var api: RestAPIService
 
     suspend fun getDescription(city: String): List<String> {
         val data = api.getWeather(city)

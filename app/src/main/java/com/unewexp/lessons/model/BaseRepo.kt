@@ -1,5 +1,6 @@
 package com.unewexp.lessons.model
 
+import android.util.Log
 import com.google.gson.Gson
 import com.unewexp.lessons.source.ErrorResponse
 import com.unewexp.lessons.source.Resource
@@ -26,6 +27,7 @@ abstract class BaseRepo {
 
                     Resource.Error(errorMessage = (errorResponse?.cod + " " + errorResponse?.message)
                         ?: "smt went wrong"
+
                     )
                 }
             }catch (e: HttpException){

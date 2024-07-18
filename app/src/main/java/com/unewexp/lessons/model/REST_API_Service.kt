@@ -8,7 +8,18 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RestAPIService: BaseRepo() {
+class Client{
+    fun createClient(): OkHttpClient{
+        val loggingInterceptor = HttpLoggingInterceptor()
+            .setLevel(HttpLoggingInterceptor.Level.BODY)
+        val client = OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .build()
+        return client
+    }
+}
+
+class RestAPIService(val client: Client): BaseRepo() {
 
     private var api: GetData
     private val token = "78b4fdb4a16e9c465b78f7f574a5bc54"
@@ -17,23 +28,14 @@ class RestAPIService: BaseRepo() {
         api = createApi()
     }
 
-    private fun createClient(): OkHttpClient{
-        val loggingInterceptor = HttpLoggingInterceptor()
-            .setLevel(HttpLoggingInterceptor.Level.BODY)
-        val client = OkHttpClient.Builder()
-            .addInterceptor(loggingInterceptor)
-            .build()
-        return client
-    }
+
 
     private fun createApi(): GetData {
-
-        val client = createClient()
 
         val converter = GsonConverterFactory.create()
 
         val retrofit = Retrofit.Builder()
-            .client(client)
+            .client(client.createClient())
             .baseUrl("https://api.openweathermap.org/data/2.5/")
             .addConverterFactory(converter)
             .build()

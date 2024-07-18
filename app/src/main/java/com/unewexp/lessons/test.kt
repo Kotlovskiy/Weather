@@ -25,9 +25,9 @@ fun main() = runBlocking{
 
         val api = retrofit.create(GetData::class.java)
 
-        var fall = "fff"
-        val responseCall = api.getData("qqq", "78b4fdb4a16e9c465b78f7f574a5bc54")
-        println(fall)
+        var city = "London"
+        val responseCall = api.getData(city, "3c782e22e43055c7b03927e0a8bf03fd")
+        println(city)
 
 
 }
