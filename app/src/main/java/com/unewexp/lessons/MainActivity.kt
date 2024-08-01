@@ -9,18 +9,25 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import com.unewexp.lessons.databinding.ActivityMainBinding
+import com.unewexp.lessons.model.RestAPIService
 import com.unewexp.lessons.presenter.Presenter
 import kotlinx.coroutines.*
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private var presenter = Presenter()
+
+    @Inject lateinit var presenter: Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        appGraph.inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+
 
         binding.button.setOnClickListener {
             getWeather()

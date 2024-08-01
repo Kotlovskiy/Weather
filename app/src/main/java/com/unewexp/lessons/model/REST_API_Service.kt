@@ -19,6 +19,8 @@ class Client{
     }
 }
 
+
+
 class RestAPIService(val client: Client): BaseRepo() {
 
     private var api: GetData
